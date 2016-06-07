@@ -43,7 +43,7 @@ app.use(flash());
 /**
  * Initialize Passport
  */
-require('./config/passport')(passport);
+require('./service/passport')(passport);
 
 app.use('/', routes);
 app.use('/users', users);

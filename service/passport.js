@@ -29,7 +29,7 @@ module.exports = function(passport) {
                     if (err)
                         return done(err);
                     if (user) {
-                        return done(null, false, req.flash('registration-message', 'Sorry! This email is busy.'));
+                        return done(null, false, req.flash('registration-message', 'Sorry! This email is unavailable.'));
                     } else {
                         var newUser = new User();
                         newUser.local.email = email;
