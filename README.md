@@ -1,5 +1,5 @@
 # authentication-express-passport
-Usage
+## Usage
 
 $ cd authentication-express-passport
 $ npm install
