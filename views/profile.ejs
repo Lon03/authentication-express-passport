@@ -1,0 +1,15 @@
+<html>
+<head>
+    <link rel="stylesheet" href="public/css/style2.css">
+</head>
+<body>
+<h1>Profile</h1>
+<p><span class="text">Your id: </span><%= user._id ? user._id : '' %></p>
+<div>
+    <% if (user.local.email != null) { %>
+    <p><span class="text">Your email: </span> <%= user.local.email %></p>
+    <% } %>
+</div>
+<a href="/"> Sign out</a>
+</body>
+</html>

@@ -1,0 +1,32 @@
+body{
+    background: url("../img/8.jpg") 0 repeat;
+}
+
+h1{
+    text-align:center;
+    font-size:50px;
+    color: #252519;
+}
+
+a{
+    padding:20px;
+    color: #00a2d3;
+    text-decoration: none;
+    font-size: 25px;
+    line-height: normal;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+body p{
+    color:aliceblue;
+    font-size:15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body p .text{
+    color: khaki;
+    font-size: 20px;
+}

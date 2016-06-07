@@ -1,0 +1,30 @@
+<html>
+<head>
+    <link rel="stylesheet" href="public/css/style1.css">
+</head>
+<body>
+<div class="err">
+    <% if (message != null) { %>
+    <div class="alert-danger"><%= message %></div>
+    <% } %>
+</div>
+
+<form action="/" method="post" class="login">
+    <p>
+        <label for="login">Login:</label>
+        <input type="text" name="email" id="login">
+    </p>
+
+    <p>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password">
+    </p>
+
+    <p class="login-submit">
+        <button type="submit" class="login-button" value="Submit"></button>
+    </p>
+</form>
+
+<p class="forgot-password"><a href="/registration">Sign up</a></p>
+</body>
+</html>
