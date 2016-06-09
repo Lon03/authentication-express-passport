@@ -1,26 +1,34 @@
-const express = require('express')
-    , passport = require('passport')
-    , path = require('path')
-    , mongoose = require('mongoose')
-    , session = require('express-session')
-    , cookieParser = require('cookie-parser')
-    , bodyParser = require('body-parser')
-    , favicon = require('serve-favicon')
-    , logger = require('morgan')
-    , flash = require('connect-flash');
+const express      = require('express');
+const passport     = require('passport');
+const path         = require('path');
+const mongoose     = require('mongoose');
+const logger       = require('morgan');
 
 
-var   routes = require('./routes/index')
-    , users = require('./routes/users');
+/****************************************************
+ *                  middleware
+ ****************************************************/
+const session      = require('express-session');
+const bodyParser   = require('body-parser');
+const cookieParser = require('cookie-parser');
+const favicon      = require('serve-favicon');
+const flash        = require('connect-flash');
 
 
-var db = mongoose.connect('mongodb://127.0.0.1:27017/user');
-mongoose.connection.once('connected', function() {
-    console.log("Connected to database 127.0.0.1:27017/user")
-});
+/****************************************************
+ *                  routes
+ ****************************************************/
+const routes = require('./routes/index');
+const users  = require('./routes/users');
+
+var app  = express();
+var port = 3000;
+
+var dbConfig = require('./service/db');
+// Connect to DB
+mongoose.connect(dbConfig.url);
 
 
-var app = express();
 //view engine setup.
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -34,15 +42,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: 'one'
+    , resave: true
+    , saveUninitialized: false
+}));
 
-app.use(session({ secret: 'one' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-/**
- * Initialize Passport
- */
+
 require('./service/passport')(passport);
 
 app.use('/', routes);
@@ -58,8 +68,7 @@ app.use(function(req, res, next) {
 });
 
 /**
- * development error handler
- * will print stacktrace
+ * development error handler will print stacktrace
  */
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
@@ -72,5 +81,6 @@ if (app.get('env') === 'development') {
 }
 
 
-app.listen(3000);
+app.listen(port);
+console.log('Listening on ' + port);
 

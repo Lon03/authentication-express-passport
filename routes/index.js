@@ -1,6 +1,6 @@
-const express = require('express')
-    , passport = require('passport')
-    , router = express.Router();
+const express  = require('express');
+const passport = require('passport');
+const router   = express.Router();
 
 
 router.get('/', function(req, res) {
